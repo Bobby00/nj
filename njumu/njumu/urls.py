@@ -36,6 +36,7 @@ urlpatterns = [
 	path('login/', views.login_page, name='login'),
 	path('register/', views.register_page, name='register'),
 	path('products/', include("products.urls")),
+	path('search/', include("search.urls")),
 	# path('products/', product_list_view),
 	# # path('products/<int:pk>/', product_detail_view),
 

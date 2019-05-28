@@ -89,6 +89,12 @@
                                 </div> -->
                             </div>
 
+
+                            <!-- product list modal START -->
+                            {% include 'base/product_modal.html' %}
+                            <!-- product list END-->
+
+
                             <!-- product list start -->
                             <div class="gallery-items spad">
 								{% for obj in object_list %}
@@ -109,7 +115,7 @@
 												    
 												    <p class="shoe-details">Quality Score: <span class="quality-score">{{ obj.quality_score }}%</span> <span class="tooltip far fa-question-circle qs_detail"><span class="tooltiptext">Find out more</span></span></p>
 
-                                                    <p>Date Added : {{ obj.timestamp }}</p>
+                                                    <p class="timestamp_cstm">Date Added : {{ obj.timestamp }}</p>
 												    
 												    <div class="price">
 												      <s class="initial-price">KES 2,000</s><span class="currency">KES</span> <span class="shoe-price">{{ obj.price }}</span>
@@ -119,7 +125,7 @@
 									`					Classes to use when buiding a modal popup
 												    	data-izimodal-open="#modal" data-izimodal-transitionin="fadeInDown" 
 												    -->
-												    <a href="{{ obj.get_absolute_url }}"  class="add-to-cart">Add to Cart</a>
+												    <a href="#0" onclick="document.getElementById('product-{{ obj.id }}').style.display='block'" class="add-to-cart"> <span class="fas fa-search"></span> QUICK VIEW</a>
 												  </figcaption>
 								        </figure>
 								    </div>

@@ -149,6 +149,7 @@
                             <p class="shoe-details">Condition: <span class="shoe-condition"> {{ obj.shoe_condition }}</span></p>
                             
                             <p class="shoe-details">Quality Score: <span class="quality-score">{{ obj.quality_score }}%</span> <span class="tooltip far fa-question-circle qs_detail"><span class="tooltiptext">Find out more</span></span></p>
+                            <p class="timestamp_cstm">Date Added : {{ obj.timestamp }}</p>
                             <div class="price">
                               <s class="initial-price">KES 2,000</s><span class="currency">KES</span> <span class="shoe-price">{{ obj.price }}</span>
                             </div>
@@ -157,7 +158,7 @@
             `                   Classes to use when buiding a modal popup
                                 data-izimodal-open="#modal" data-izimodal-transitionin="fadeInDown" 
                             -->
-                            <a href="#0" onclick="document.getElementById('product-{{ obj.id }}').style.display='block'" class="add-to-cart">Add to Cart</a>
+                            <a href="#0" onclick="document.getElementById('product-{{ obj.id }}').style.display='block'" class="add-to-cart"> <span class="fas fa-search"></span> QUICK VIEW</a>
                           </figcaption>
                 </figure>
             </div>
@@ -165,7 +166,7 @@
         <!-- product-item end-->
 {% endfor %}    
 
-            <a href="{% url 'list' %}" class="tertiary_btn">SEE ALL SHOES</a>
+            <a href="{% url 'list' %}" class="secondary_btn">SEE ALL SHOES</a>
 
         </div>
 
@@ -208,6 +209,10 @@
                         <img class="benefits-icon_styl" src="{% static 'images/icons/png/041-24-hours.png' %}">
                         <p class="benefits-text_style">24hr Customer Service, call or text us at any time</p>
                     </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <img class="benefits-icon_styl" src="{% static 'images/icons/png/050-ecommerce.png' %}">
+                        <p class="benefits-text_style">Live location shoe delivery</p>
+                    </div>
 
 
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -223,8 +228,8 @@
                         <p class="benefits-text_style">Weekly newsletters with information on new shoes available</p>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                        <img class="benefits-icon_styl" src="{% static 'images/icons/png/001-guarantee.png' %}">
-                        <p class="benefits-text_style">Get real value for your money.</p>
+                        <img class="benefits-icon_styl" src="{% static 'images/icons/png/044-save-money.png' %}">
+                        <p class="benefits-text_style">Get quality shoes at a more affordable amount.</p>
                     </div>
                 </div>
                 
