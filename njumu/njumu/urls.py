@@ -37,15 +37,13 @@ urlpatterns = [
 	path('register/', views.register_page, name='register'),
 	path('products/', include("products.urls")),
 	path('search/', include("search.urls")),
+	path('cart/', include("carts.urls")),
 	# path('products/', product_list_view),
 	# # path('products/<int:pk>/', product_detail_view),
-
 	# # re_path(r'^products/(?P<slug>[\w-]+)/$', product_slug_detail_view),
 	# re_path(r'^products/(?P<slug>[\w-]+)/$', ProductDetailSlugView.as_view()),
-
 	# path('featured/', ProductFeaturedListView.as_view()),
 	# path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
-
     path('admin/', admin.site.urls),
 ]
 

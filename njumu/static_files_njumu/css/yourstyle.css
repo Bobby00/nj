@@ -73,6 +73,11 @@
   font-weight: 800!important;
 }
 
+.filter_fields {
+  position: absolute!important;
+  z-index: 10000;
+}
+
 #wrapper {
   width: 900px;
   height: 400px;

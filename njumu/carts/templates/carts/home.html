@@ -1,0 +1,133 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Cart - An Overview of your order{% endblock title %}
+
+<!-- {{ object_list }} -->
+{% load static %}
+
+
+            {% block content_shoe-list %}  
+
+            <!-- fixed column  -->
+            <div class="fixed-column">
+                <div class="column-image fl-wrap full-height">
+                    <div class="bg bg-scroll" ></div>
+                    <div class="overlay"></div>
+                </div>
+                <div class="bg-title alt"><span></span></div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            <!-- fixed column  end -->
+            <!-- column-wrap  -->
+            <div class="column-wrap scroll-content">
+                <!--=============== content ===============-->
+                <!-- scroll page navigation -->
+                <div class="scroll-nav-holder fl-wrap">
+                    <nav class="scroll-nav fl-wrap">
+                        <ul>
+                            <a class="scroll-link" href="#sec4" data-bgscr="{% static 'images/bg/long/1.jpg' %}" data-bgtex="your_cart"></a>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- scroll page navigation end -->
+                <!-- content   -->
+                <div class="content">
+                    
+                    <!-- section end -->
+                    <section data-scrollax-parent="true"  id="sec4" class="scroll-con-sec dec-sec">
+                        <div class="container">
+
+                            <div class="section-title">
+                                <h2>MY CART</h2>
+                                <p>Summary of your order and total costs.</p>
+                                <div class="clearfix"></div>
+                                <span class="bold-separator"></span>
+                            </div>
+
+<style type="text/css">
+	table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 600;
+    text-align: center;
+
+}
+td {
+	font-size: 16px;
+    text-align: center;
+}
+
+td, th {
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color:;
+}
+
+</style>
+                            
+
+                            <div class="row">
+                        {% if cart.products.exists %}
+                                <table>
+								  <tr>
+								  	<th></th>
+                                    <th></th>
+								    <th>Product</th>
+								    <th>Size</th>
+								    <th>Quantity</th>
+								    <th>Total (Ksh)</th>
+								  </tr>
+                                  {% for product in cart.products.all %}
+								  <tr>
+                                    <td>{{ forloop.counter }}.</td>
+								  	<th style="width: 25%;"><img style="width: 50%;" src="{{ product.image.url }}"></th>
+								    <td>{{ product.title }} <br>{% include 'products/snippets/update-cart.html' with product=product cart=cart %}</td>
+
+								    <td>{{ product.shoe_size }}</td>
+								    <td>{{ product.count }}</td>
+								    <td><b>{{ product.price }}</b></td>
+                                    <!-- <td><a><i class="fas fa-trash-alt"></i></a></td> -->
+								  </tr>
+                                  {% endfor %}
+								</table>
+
+								<p style="text-align: right; font-size: 18px; font-weight: 700;">Sub total: {{ cart.subtotal }}</p>
+								<p style="text-align: right; font-size: 18px; font-weight: 700;">Total: {{ cart.total }}</p>
+                        {% else %}
+                            <h3>Cart is Empty</h3>
+                        {% endif %}
+								<a href="shoes_view.html" class="secondary_btn">CONTINUE SHOPPING</a>
+                                <a href="shoes_view.html" class="secondary_btn">PROCEED TO CHECKOUT</a>
+
+                            </div>
+ 
+                    <!--  to top  -->
+                    <div class="small-sec fl-wrap">
+                        <div class="to-top-wrap"><a class="to-top" href="#"> <i class="fa fa-angle-double-up"></i> Back to Top</a></div>
+                    </div>
+                    <!-- to top end-->
+                </div>
+                <!-- content end -->
+            </div>
+            <!-- column-wrap end -->
+            <!-- arrow nav -->
+            <div class="arrowpagenav"></div>
+            <!-- arrow nav end-->
+
+            {% endblock content_shoe-list %}
+
+            

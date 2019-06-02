@@ -1,6 +1,13 @@
 <img src="{{ object.image.url }}">
-{{ object.title }}
-{{ object.shoe_size }}
-{{ object.shoe_condition }}
-{{ object.quality_score }}
-{{ object.price }}
+{{ object.title }}<br>
+{{ object.shoe_size }}<br>
+{{ object.shoe_condition }}<br>
+{{ object.quality_score }}<br>
+{{ object.price }}<br>
+
+{{ cart }}
+
+{% include 'products/snippets/update-cart.html' with product=object cart=cart %}
+
+<br><br><br>
+
