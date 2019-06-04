@@ -110,8 +110,8 @@ tr:nth-child(even) {
                         {% else %}
                             <h3>Cart is Empty</h3>
                         {% endif %}
-								<a href="shoes_view.html" class="secondary_btn">CONTINUE SHOPPING</a>
-                                <a href="shoes_view.html" class="secondary_btn">PROCEED TO CHECKOUT</a>
+								<a href="{% url 'list' %}" class="secondary_btn">CONTINUE SHOPPING</a>
+                                <a href="{% url 'checkout' %}" class="secondary_btn">PROCEED TO CHECKOUT</a>
 
                             </div>
  

@@ -3002,7 +3002,57 @@ article h4 a:hover {
 	line-height:36px;
 	border-radius:100%;
 }
+
+.cart-count {
+	background-color: ;
+	color: white;
+	border-radius: 30px;
+	padding: 5px;
+	position:absolute;
+	bottom:40px;
+	left:22px;
+	cursor:pointer;
+}
+
+.cart-icon {
+	position:absolute;
+	bottom:40px;
+	left:22px;
+	cursor:pointer;
+	width:20px;
+	height:20px;
+}
+
+.cart-icon:before {
+	content:'';
+	position:absolute;
+	top:10px;
+	left:-5px;
+	width:30px;
+	height:1px;
+	z-index:5;
+}
+
+.cart-icon:after {
+	content:"Cart";
+	position:absolute;
+	top:-36px;
+	left:-2px;
+	font-family: "Times New Roman", Times, serif;
+	float:left;
+	text-align:center;
+	font-style:italic;
+	color:#fff;
+	opacity:0;
+	visibility:hidden;
+}
+
+
+
+
 /*------ share------------------------------------------------*/
+
+
 .show-share {
 	position:absolute;
 	bottom:40px;
@@ -3011,6 +3061,7 @@ article h4 a:hover {
 	width:20px;
 	height:20px;
 }
+
 .show-share:before {
 	content:'';
 	position:absolute;
