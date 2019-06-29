@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # CUSTOM APPS
+    'accounts',
+    'addresses',
+    'billing',
     'carts',
     'orders',
     'products',
@@ -54,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOGOUT_REDIRECT_URL = '/login/'
 
 ROOT_URLCONF = 'njumu.urls'
 

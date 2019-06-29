@@ -14,6 +14,7 @@
     {% if request.user.is_authenticated %}
     <div class="user-details_logged_in">
         <i class="fas fa-user-circle user-icon_logged_in"></i><br><span>Hi <b>{{ user.get_username }}</b></span>
+        <span style="font-size: 14px; text-decoration: underline;"><a href="{% url 'logout' %}">log out?</a></span>
     </div>
 
     {% else %}

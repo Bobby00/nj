@@ -3,6 +3,33 @@
 	Add your style here
 --*/ 
 
+.add-2-cart_btn {
+  display: inline-block;
+  width: auto;
+  border: 2px solid #FD6A06;
+  background-color: #FD6A06;
+  padding: 12px 50px;
+  color: #fff;
+  border-radius: 30px;
+  margin-top: 5%;
+  left: 0!important;
+  text-decoration: none;
+  text-align: left;
+  font-weight: 800;
+  font-size: 1.3em;
+  text-transform: uppercase;
+}
+
+.rmv-frm-cart_btn {
+  
+}
+
+.cstm_brder {
+  border: 1.3px solid green!important;
+  border-radius: 30px!important;
+  margin-bottom: 20px!important;
+}
+
 .cart-styling {
 	font-size: 30px;
 	color: white;

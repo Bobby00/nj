@@ -1,10 +1,151 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Checkout - Confirm your details below to complete your order. {% endblock title %}
 
 
-<h1>Hello this is the check out page now build me bro</h1>
+{% block content_checkout-view %}
 
-<p>Cart total: {{ object.cart.total }}</p>
-<p>Delivery total: {{ object.delivery_total }}</p>
 
-<p>Order total: {{ object.total }}</p>
 
-<p>Order Status: {{ object.status }}</p>
+<!-- fixed column  -->
+<div class="fixed-column">
+    <div class="column-image fl-wrap full-height">
+        <div class="bg" data-bg="{% static 'images/bg/long/1.jpg' %}"></div>
+        <div class="overlay"></div>
+    </div>
+    <div class="bg-title alt"><span>Checkout</span></div>
+    <div class="progress-bar-wrap">
+        <div class="progress-bar"></div>
+    </div>
+</div>
+<!-- fixed column  end -->
+<!-- column-wrap  -->
+<div class="column-wrap scroll-content">
+    <!--=============== content ===============-->  
+    <!-- content   -->               
+    <div  class="content">
+        <!-- section-->
+        <section  data-scrollax-parent="true" class="dec-sec">
+            <div class="container">
+                
+                <div class="fl-wrap">
+                    <!-- contact info -->
+                <div class="container">
+                    <div class="form_border">
+
+                    <div class="section-title">
+                        <span style="color: green; text-align: left; float: left;" class="fab fa-opencart fa-5x"></span>
+                    <h2 class="bold-title">Checkout</h2>
+                    <p>Confirm your details below to complete your order.</p>
+                    <div class="fl-wrap">
+                    </div>
+                        
+                        {% if not billing_profile %}
+
+                        <div class="row">
+                        	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+	                        	<article class="post">
+	                                <div class="post-item fl-wrap">
+	                                	<br><br>
+	                                    <h2 style="font-size: 30px; color: #FD6A06;" class="bold-title">Login to Checkout</h2>
+                    					<p>Enter your details below to Login and complete your order.</p>
+	                                    <!-- <ul class="post-meta">
+	                                        <li>02 Frb</li>
+	                                        <li>22 com</li>
+	                                        <li><i class="fa fa-heart-o"></i> 151</li>
+	                                        <li>
+	                                            <h5>Posted by <a href="#">Maruis</a> / <a href="#">Standart</a></h5>
+	                                        </li>
+	                                    </ul> -->
+	                                    
+	                                    <!-- <ul class="post-tags single-tags">
+	                                        <li><a href="#">Design</a></li>
+	                                        <li><a href="#">Video</a></li>
+	                                        <li><a href="#">Photo</a></li>
+	                                    </ul> -->
+
+	                                    {% include 'accounts/snippets/form.html' with form=login_form next_url=request.build_absolute_uri %}
+
+
+	                                    <div class="artcicle-icon"><i class="fas fa-user"></i></div>
+	                                </div>
+	                            </article>
+                        	</div>
+                        	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+	                        	<article class="post">
+	                                <div class="post-item fl-wrap">
+	                                	<br><br>
+	                                    <h2 style="font-size: 30px; color: green;" class="bold-title">Guest Checkout</h2>
+                    					<p>Click the button below to continue as guest user.</p>
+
+
+                    					{% url 'guest_register' as guest_register_url %}
+                    					{% include 'accounts/snippets/form.html' with form=guest_form next_url=request.build_absolute_uri action_url=guest_register_url %}
+	                                    <!-- <ul class="post-meta">
+	                                        <li>02 Frb</li>
+	                                        <li>22 com</li>
+	                                        <li><i class="fa fa-heart-o"></i> 151</li>
+	                                        <li>
+	                                            <h5>Posted by <a href="#">Maruis</a> / <a href="#">Standart</a></h5>
+	                                        </li>
+	                                    </ul> -->
+	                                    
+	                                    <!-- <ul class="post-tags single-tags">
+	                                        <li><a href="#">Design</a></li>
+	                                        <li><a href="#">Video</a></li>
+	                                        <li><a href="#">Photo</a></li>
+	                                    </ul> -->
+
+	                                    <button style="padding:20px 40px!important;" type="submit" id="submit" class="contact_form-btn"><span style="font-size: 20px; font-weight: 800; letter-spacing: 1.5px;">CONTINUE AS GUEST </span><span style="font-size: 18px;" class="fas fa-arrow-right"></span></button>
+
+	                                    <div class="artcicle-icon"><i class="fas fa-user-plus"></i></div>
+	                                </div>
+	                            </article>
+                        	</div>
+                        </div>
+						
+
+						{% else %}
+
+							{% if not object.shipping_address %}
+									<p style="font-size: 20px;">Shipping Address</p>
+								{% url 'checkout_address_create' as checkout_address_create %}
+                    			{% include 'addresses/form.html' with form=address_form next_url=request.build_absolute_uri action_url=checkout_address_create address_type='shipping' %}
+
+							{% else %}
+
+							{{ object.order_id }} -- {{ object.cart }}
+
+							<p>Cart total: {{ object.cart.total }}</p><br>
+							<p>Delivery total: {{ object.delivery_total }}</p>
+
+							<p>Order total: {{ object.total }}</p>
+
+							<p>Order Status: {{ object.status }}</p>
+
+							{% endif %}
+
+						{% endif %}
+                        
+                    </div>
+                </div>
+                </div>
+
+                </div>
+            </div>
+            <div class="parallax-title right-pos" data-scrollax="properties: { translateY: '-350px' }">  CHECKOUT</div>
+        </section>
+        <!-- section end -->
+        <!--  to top  -->  
+        <div class="small-sec fl-wrap">
+            <div class="to-top-wrap"><a class="to-top" href="#"> <i class="fa fa-angle-double-up"></i> Back to Top</a></div>
+        </div>
+        <!-- to top end--> 
+    </div>
+    <!-- content end -->
+</div>
+<!-- column-wrap end -->
+
+{% endblock content_checkout-view %}

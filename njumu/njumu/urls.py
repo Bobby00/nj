@@ -17,9 +17,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.urls import path, re_path, include
 
-from njumu import views
+from addresses.views import checkout_address_create_view
+from accounts.views import login_page, register_page, guest_register_view
+from .views import home_page, about_page, contact_page
 # from products.views import (product_list_view,
 # 							product_detail_view,
 
@@ -29,12 +32,15 @@ from njumu import views
 # 							ProductFeaturedDetailView)
 
 urlpatterns = [
-	path('', views.home_page, name='home'),
-	path('about/', views.about_page, name='about'),
-	path('contact/', views.contact_page, name='contact'),
+	path('', home_page, name='home'),
+	path('about/', about_page, name='about'),
+	path('contact/', contact_page, name='contact'),
 
-	path('login/', views.login_page, name='login'),
-	path('register/', views.register_page, name='register'),
+	path('login/', login_page, name='login'),
+	path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
+	path('register/guest', guest_register_view, name='guest_register'),
+	path('logout/', LogoutView.as_view(), name='logout'),
+	path('register/', register_page, name='register'),
 	path('products/', include("products.urls")),
 	path('search/', include("search.urls")),
 	path('cart/', include("carts.urls")),

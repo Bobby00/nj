@@ -31,7 +31,7 @@
                 <!-- <div class="price">
                   <s class="initial-price">KES 2,000</s><span class="currency">KES</span> <span class="shoe-price">1,600</span>
                 </div> -->
-                <a href="#" class="add-to-cart-modal">Add to Cart</a>
+                {% include 'products/snippets/update-cart.html' with product=obj cart=cart %}
               
             </div>
     </div>

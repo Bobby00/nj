@@ -2562,10 +2562,10 @@ source {
 	color:green;
 	font-size:17px;
 }
-#contact-form input[type="text"], input[type="email"], #contact-form  textarea {
+#contact-form input[type="text"], input[type="email"], input[type="password"], #contact-form  textarea {
 	color: #666;
 	font-weight:600;
-	font-size: 16px;
+	font-size: 20px;
 	padding: 15px 0;
 	width: 100%;
 	padding-left:10px;
@@ -2575,7 +2575,14 @@ source {
 	border-radius:0;
 	position:relative;
 }
-#contact-form input[type=text]:focus, #contact-form textarea:focus, input[type=email]:focus {
+
+#contact-form select {
+	width: 100%;
+	padding: 15px;
+	font-size: 20px;
+}
+
+#contact-form input[type=text]:focus, #contact-form textarea:focus, input[type=email]:focus, input[type=password]:focus {
 	color:#000;
 }
 #contact-form textarea {
@@ -3227,6 +3234,24 @@ article h4 a:hover {
 	padding: 19px!important;
 	border-radius: 30px!important;
 	border: 2px dashed green!important;
+}
+
+.checkout_form-btn {
+	background-color: #FD6A06!important;
+	color: white!important;
+	font-size: 18px!important;
+	padding: 19px!important;
+	border-radius: 30px!important;
+	float: none!important;
+}
+
+.checkout_form-btn:hover {
+	background-color: white!important;
+	color: green!important;
+	font-size: 18px!important;
+	padding: 19px!important;
+	border-radius: 30px!important;
+	border: 2px dashed #FD6A06!important;
 }
 
 }
