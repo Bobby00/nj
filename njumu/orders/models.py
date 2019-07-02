@@ -2,6 +2,7 @@ import math
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 
+from addresses.models import Address
 from billing.models import BillingProfile
 from carts.models import Cart
 from njumu.utils import unique_order_id_generator
@@ -17,7 +18,7 @@ class OrderManager(models.Manager):
 
 	def new_or_get(self, billing_profile, cart_obj):
 		created = False
-		qs = self.get_queryset().filter(billing_profile=billing_profile, cart=cart_obj, active=True)
+		qs = self.get_queryset().filter(billing_profile=billing_profile, cart=cart_obj, active=True, status='created')
 		if qs.count() == 1:
 			obj = qs.first()
 		else:
@@ -28,9 +29,8 @@ class OrderManager(models.Manager):
 class Order(models.Model):
 	billing_profile		= models.ForeignKey(BillingProfile, blank=True, null=True, on_delete=models.CASCADE)
 	order_id			= models.CharField(max_length=120, blank=True)
-	# billing_profile	=
-	# delivery_address	=
-	# billing_address	=
+	shipping_address	= models.ForeignKey(Address, related_name="shipping_address", blank=True, null=True, on_delete=models.CASCADE)
+	billing_address		= models.ForeignKey(Address, related_name="billing_address", blank=True, null=True, on_delete=models.CASCADE)
 	cart 				= models.ForeignKey(Cart, on_delete=True)
 	status				= models.CharField(max_length=120, default='created', choices=ORDER_STATUS_CHOICES)
 	delivery_total		= models.DecimalField(default = 250.00, decimal_places=2, max_digits=100)
@@ -51,6 +51,20 @@ class Order(models.Model):
 		self.save()
 		return self.total
 
+	def check_done(self):
+		billing_profile 	= self.billing_profile
+		shipping_address	= self.shipping_address
+		billing_address		= self.billing_address
+		total 				= self.total
+		if billing_profile and shipping_address and billing_address and total > 0:
+			return True
+		return False
+
+	def mark_paid(self):
+		if self.check_done():
+			self.status = "paid"
+			self.save()
+		return self.status
 
 def pre_save_create_order_id(sender, instance, *args, **kwargs):
 	if not instance.order_id:

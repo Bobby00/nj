@@ -39,8 +39,7 @@
                         <span style="color: green; text-align: left; float: left;" class="fab fa-opencart fa-5x"></span>
                     <h2 class="bold-title">Checkout</h2>
                     <p>Confirm your details below to complete your order.</p>
-                    <div class="fl-wrap">
-                    </div>
+                    
                         
                         {% if not billing_profile %}
 
@@ -110,21 +109,39 @@
 						{% else %}
 
 							{% if not object.shipping_address %}
-									<p style="font-size: 20px;">Shipping Address</p>
+								<p style="font-size: 20px;">Shipping Address</p>
 								{% url 'checkout_address_create' as checkout_address_create %}
                     			{% include 'addresses/form.html' with form=address_form next_url=request.build_absolute_uri action_url=checkout_address_create address_type='shipping' %}
 
-							{% else %}
+                    			{% url 'checkout_address_reuse' as checkout_address_reuse %}
+                    			{% include 'addresses/prev_addresses.html' with address_qs=address_qs next_url=request.build_absolute_uri address_type='shipping' action_url=checkout_address_reuse %}
+	                    		
 
+                    		{% elif not object.billing_address %}
+
+								<p style="font-size: 20px;">Billing Address</p>
+								{% url 'checkout_address_create' as checkout_address_create %}
+                    			{% include 'addresses/form.html' with form=address_form next_url=request.build_absolute_uri action_url=checkout_address_create address_type='billing' %}
+
+                    			{% url 'checkout_address_reuse' as checkout_address_reuse %}
+                    			{% include 'addresses/prev_addresses.html' with address_qs=address_qs next_url=request.build_absolute_uri address_type='billing' action_url=checkout_address_reuse %}
+
+							{% else %}
+						<div class="fl-wrap text-left">
 							{{ object.order_id }} -- {{ object.cart }}
 
-							<p>Cart total: {{ object.cart.total }}</p><br>
-							<p>Delivery total: {{ object.delivery_total }}</p>
+							<h3>Finalize Checkout</h3>
 
-							<p>Order total: {{ object.total }}</p>
+							<h6>Cart total: {{ object.cart.total }}</h6>
+							<h6>Delivery total: {{ object.delivery_total }}</h6>
 
-							<p>Order Status: {{ object.status }}</p>
+							<h6>Order total: {{ object.total }}</h6>
 
+							<h6>Order Status: {{ object.status }}</h6>
+							<form method="POST" action="">{% csrf_token %}
+								<button style="padding:20px 40px!important;" type="submit" id="submit" class="checkout_form-btn"><span style="font-size: 22px; font-weight: 800; letter-spacing: 1.5px;">Complete Order</span><span style="font-size: 18px;" class="fas fa-arrow-right"></span></button>
+							</form>
+						</div>
 							{% endif %}
 
 						{% endif %}
